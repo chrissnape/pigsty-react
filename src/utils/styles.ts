@@ -17,3 +17,4 @@ export const fontColour: string = "#333";
 export const fontSize: string = '16px';
 
 export const border: string = `1px solid ${greyLight}`;
+export const borderRadius: string = '5px';

@@ -10,7 +10,7 @@ import {
 
 const props = {
   label: "View",
-  onClick: () => {},
+  onClick: jest.fn(),
 }
 
 test('renders label', () => {
@@ -21,7 +21,8 @@ test('renders label', () => {
 
 test('runs onClick when button pressed', () => {
   render(<Button {...props} />);
-  fireEvent.click(screen.getByTestId('button'), props.onClick);
+  fireEvent.click(screen.getByTestId('button'));
+  expect(props.onClick).toHaveBeenCalled();
 });
 
 test('button has default style', () => {

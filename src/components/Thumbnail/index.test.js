@@ -11,7 +11,7 @@ const props = {
       url:'https://ichef.bbci.co.uk/news/976/cpsprodpb/B4BA/production/_118166264_microsoftteams-image.png',
     },
   ],
-  onClick: () => {},
+  onClick: jest.fn(),
 };
 
 test('renders image', () => {
@@ -31,5 +31,6 @@ test('renders placeholder when no images', () => {
 
 test('runs onClick when thumbnail pressed', () => {
   render(<Thumbnail {...props} />);
-  fireEvent.click(screen.getByTestId('thumbnail'), props.onClick);
+  fireEvent.click(screen.getByTestId('thumbnail'));
+  expect(props.onClick).toHaveBeenCalled();
 });

@@ -6,8 +6,10 @@ import {
 export const Thumbnail = styled.div`
   background-color: ${greyLight};
   cursor: pointer;
+  height: 100%;
   overflow: hidden;
   position: relative;
+  width: 100%;
 `;
 
 export const Number = styled.div`
@@ -28,5 +30,7 @@ export const Overlay = styled.div`
 `;
 
 export const Image = styled.img`
+  height: 100%;
   object-fit: cover;
+  width: 100%;
 `;

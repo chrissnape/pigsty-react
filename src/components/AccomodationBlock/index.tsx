@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from 'react';
+import { Container, Row, Col } from 'react-grid';
 import moment, { Moment } from 'moment';
-import Button from '../Button';
-import Thumbnail from '../Thumbnail';
+import { Button, Thumbnail } from '../';
 import { DATE } from '../../utils/constants';
 import { Image as ImageType, Price } from '../../utils/types';
 import * as Style from './style';
@@ -32,36 +32,45 @@ const AccomodationBlockComponent: FC<Props> = ({
   const { amount, billsIncluded, time } = price;
   return (
     <Style.AccomodationBlock>
-      <Style.ThumbnailWrapper>
-        <Thumbnail images={images} onClick={onClick} />
-      </Style.ThumbnailWrapper>
-      <Style.Content>
-        <Style.Top>
-          <Style.Title data-testid="title">
-            {title}
-          </Style.Title>
-          <Style.SubTitle>
-            <Style.Type data-testid="type">
-              {`${roomType} ${propertyType}`}
-            </Style.Type>
-            {getAvailability(availabileDateString)}
-          </Style.SubTitle>
-          <div data-testid="address">
-            {`${city}, ${postcode}`}
-          </div>
-        </Style.Top>
-        <Style.Bottom>
-          <Style.Price>
-            <Style.Amount data-testid="price">
-              {`£${amount}${time}`}
-            </Style.Amount>
-            <Style.Bills data-testid="bills">
-              {billsIncluded ? 'including bills' : 'not including bills'}
-            </Style.Bills>
-          </Style.Price>
-          <Button label="View" onClick={onClick} primary data-testid="button"/>
-        </Style.Bottom>
-      </Style.Content>
+      <Container fluid styles={{gutterWidth: 0}}>
+        <Row noGutters>
+
+        <Col xs={12} md={3}>
+          <Style.ThumbnailWrapper>
+            <Thumbnail images={images} onClick={onClick} />
+          </Style.ThumbnailWrapper>
+          </Col>
+          <Col xs={12} md={9}>
+          <Style.Content>
+            <Style.Top>
+              <Style.Title data-testid="title">
+                {title}
+              </Style.Title>
+              <Style.SubTitle>
+                <Style.Type data-testid="type">
+                  {`${roomType} ${propertyType}`}
+                </Style.Type>
+                {getAvailability(availabileDateString)}
+              </Style.SubTitle>
+              <div data-testid="address">
+                {`${city}, ${postcode}`}
+              </div>
+            </Style.Top>
+            <Style.Bottom>
+              <Style.Price>
+                <Style.Amount data-testid="price">
+                  {`£${amount}${time}`}
+                </Style.Amount>
+                <Style.Bills data-testid="bills">
+                  {billsIncluded ? 'including bills' : 'not including bills'}
+                </Style.Bills>
+              </Style.Price>
+              <Button label="View" onClick={onClick} primary data-testid="button"/>
+            </Style.Bottom>
+          </Style.Content>
+          </Col>
+        </Row>
+      </Container>
     </Style.AccomodationBlock>
   );
 }
