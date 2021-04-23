@@ -23,7 +23,7 @@ const getAvailability: Function = (dateString: string): JSX.Element => {
   const avString: JSX.Element = (date.isSameOrBefore(moment()))
     ? <Style.Availability>now!</Style.Availability>
     : <>from <Style.Availability>{date.format('Do MMM')}</Style.Availability></>;
-  return <span data-testid="availabileDateString">Available {avString}</span>;
+  return <span data-testid="availability">Available {avString}</span>;
 }
 
 const AccomodationBlockComponent: FC<Props> = ({
