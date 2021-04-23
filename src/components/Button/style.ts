@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import {
+  borderRadius,
   fontColour,
   fontSize,
   greyLight,
@@ -21,13 +22,13 @@ const getBackgroundColour: Function = (primary: boolean, darken: boolean): strin
 
 export const Button = styled.button`
   background-color: ${greyLight};
-  border-radius: 5px;
+  border-radius: ${borderRadius};
   border: none;
   color: ${fontColour};
   cursor: pointer;
   font-size: ${fontSize};
   font-weight: bold;
-  padding: 10px 50px;
+  padding: 10px;
   text-align: center;
   ${(props: Props) => (props.primary || props.secondary) && css`
     background-color: ${getBackgroundColour(props.primary)};

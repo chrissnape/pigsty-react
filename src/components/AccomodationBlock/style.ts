@@ -1,21 +1,20 @@
 import styled from 'styled-components';
-import { border, secondaryColour } from '../../utils/styles';
+import { border, borderRadius, secondaryColour } from '../../utils/styles';
 
 export const AccomodationBlock = styled.div`
   border: ${border};
-  border-radius: 5px;
-  display: flex;
-  height: 180px;
+  border-radius: ${borderRadius};
   text-align: left;
   overflow: hidden;
 `;
 
 export const ThumbnailWrapper = styled.div`
-  width: 250px;
+  height: 200px;
 `;
 
 export const Content = styled.div`
   display: flex;
+  height: calc(100% - 30px);
   flex: 1;
   flex-direction: column;
   padding: 15px;
@@ -55,6 +54,7 @@ export const Bottom = styled.div`
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 `;
 
 export const Price = styled.div`
