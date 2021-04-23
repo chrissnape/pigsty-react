@@ -5,6 +5,7 @@ import {
 
 export const Thumbnail = styled.div`
   background-color: ${greyLight};
+  cursor: pointer;
   overflow: hidden;
   position: relative;
 `;

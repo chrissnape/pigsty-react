@@ -3,11 +3,11 @@ import moment, { Moment } from 'moment';
 import Button from '../Button';
 import Thumbnail from '../Thumbnail';
 import { DATE } from '../../utils/constants';
-import { Availability, Image as ImageType, Price } from '../../utils/types';
+import { Image as ImageType, Price } from '../../utils/types';
 import * as Style from './style';
 
 type Props = {
-  availability: Availability,
+  availabileDateString: string,
   city: string,
   images: Array<ImageType>,
   title: string,
@@ -27,9 +27,8 @@ const getAvailability: Function = (dateString: string): JSX.Element => {
 }
 
 const AccomodationBlockComponent: FC<Props> = ({
-  availability, city, images, title, onClick, postcode, price, propertyType, roomType,
-}): JSX.Element => {
-  const { dateString } = availability;
+  availabileDateString, city, images, title, onClick, postcode, price, propertyType, roomType,
+}): JSX.Element => {;
   const { amount, billsIncluded, time } = price;
   return (
     <Style.AccomodationBlock>
@@ -45,7 +44,7 @@ const AccomodationBlockComponent: FC<Props> = ({
             <Style.Type data-testid="type">
               {`${roomType} ${propertyType}`}
             </Style.Type>
-            {getAvailability(dateString)}
+            {getAvailability(availabileDateString)}
           </Style.SubTitle>
           <div data-testid="address">
             {`${city}, ${postcode}`}

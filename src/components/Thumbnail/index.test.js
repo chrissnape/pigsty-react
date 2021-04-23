@@ -9,7 +9,7 @@ const props = {
     }, {
       id: '456',
       url:'https://ichef.bbci.co.uk/news/976/cpsprodpb/B4BA/production/_118166264_microsoftteams-image.png',
-    }
+    },
   ],
   onClick: () => {},
 };

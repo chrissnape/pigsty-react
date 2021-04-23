@@ -2,11 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import AccomodationBlock from './index';
 
 const props = {
-  availability: {
-    dateString: '09/04/2020',
-    minimumTerm: '1 month',
-    maximumTerm: '12 months',
-  },
+  availabileDateString: '09/04/2020',
   city: 'Manchester',
   country: 'UK',
   images: [{ id: '678', url:'https://ichef.bbci.co.uk/news/320/cpsprodpb/0FCC/production/_118144040_mediaitem118144038.jpg' }],
