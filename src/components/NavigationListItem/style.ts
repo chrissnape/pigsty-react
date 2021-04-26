@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
 import {
-  border,
-  borderRadius,
-  fontColour,
-  fontSize,
+  greyDark,
+  greyMedium,
   primaryDark,
   primaryMedium,
   secondaryDark,
@@ -13,6 +11,7 @@ import {
 type Props = {
   primary: boolean,
   secondary: boolean,
+  isMobile: boolean,
 }
 
 const getBackgroundColour: Function = (primary: boolean, darken: boolean): string => {
@@ -20,22 +19,24 @@ const getBackgroundColour: Function = (primary: boolean, darken: boolean): strin
   return (primary) ? primaryMedium : secondaryMedium;
 }
 
-export const Button = styled.button`
-  background-color: #f9f9f9;
-  border-radius: ${borderRadius};
-  border: ${border};
-  color: ${fontColour};
-  cursor: pointer;
-  font-size: ${fontSize};
-  font-weight: bold;
-  padding: 10px;
-  text-align: center;
+const getBorder: Function = (primary: boolean, secondary: boolean, isMobile: boolean) => (
+  (isMobile)
+    ? `border-bottom: 1px solid ${(primary) ? primaryDark : (secondary) ? secondaryDark : greyDark};`
+    : ''
+);
+
+export const NavigationListItem = styled.li`
+  ${(props: Props) => getBorder(props.primary, props.secondary, props.isMobile)};
+  background-color: ${greyMedium};
+  color: #fff;
+  display: ${(props: Props) => props.isMobile ? 'block' : 'inline-block'};
+  list-style: none;
+  padding: 15px 25px;
   &:hover {
-    background-color: #eee;
+    background-color: ${primaryDark};
   }
   ${(props: Props) => (props.primary || props.secondary) && css`
     background-color: ${getBackgroundColour(props.primary)};
-    border-color: ${(props.primary) ? primaryDark : secondaryDark};
     color: #fff;
     &:hover {
       background-color: ${getBackgroundColour(props.primary, true)};

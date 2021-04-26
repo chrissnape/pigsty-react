@@ -1,9 +1,12 @@
-import './App.css';
-import Results from './pages/Results';
+import { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Header, Page } from './components';
+import { Accomodation, Results } from './pages';
 import { PCM } from './utils/constants';
-import { Accomodation } from './utils/types';
+import { Accomodation as AccomodationType } from './utils/types';
+import './App.css';
 
-const accomodation: Accomodation = {
+const accomodation: AccomodationType = {
   id: '123345',
   amenities: [{id: '1', name: 'Furnished'}, { id: '2', name: 'Parking'}],
   address: {
@@ -41,7 +44,21 @@ const accomodation: Accomodation = {
 
 function App() {
   return (
-    <Results accomodation={[accomodation, accomodation, accomodation]} />
+    <BrowserRouter>
+      <Fragment>
+        <Header />
+        <Page>
+          <Switch>
+            <Route path="/results/:accomodationId">
+              <Accomodation />
+            </Route>
+            <Route path="/results">
+              <Results accomodation={[accomodation, accomodation, accomodation]} />
+            </Route>
+          </Switch>
+        </Page>
+        </Fragment>
+    </BrowserRouter>
   );
 }
 

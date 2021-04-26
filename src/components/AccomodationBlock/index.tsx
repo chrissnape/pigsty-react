@@ -1,4 +1,5 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { Container, Row, Col } from 'react-grid';
 import moment, { Moment } from 'moment';
 import { Button, Thumbnail } from '../';
@@ -7,11 +8,11 @@ import { Image as ImageType, Price } from '../../utils/types';
 import * as Style from './style';
 
 type Props = {
+  id: string,
   availabileDateString: string,
   city: string,
   images: Array<ImageType>,
   title: string,
-  onClick: MouseEventHandler,
   postcode: string,
   price: Price,
   propertyType: string,
@@ -27,25 +28,29 @@ const getAvailability: Function = (dateString: string): JSX.Element => {
 }
 
 const AccomodationBlockComponent: FC<Props> = ({
-  availabileDateString, city, images, title, onClick, postcode, price, propertyType, roomType,
-}): JSX.Element => {;
+  id, availabileDateString, city, images, title, postcode, price, propertyType, roomType,
+}): JSX.Element => {
   const { amount, billsIncluded, time } = price;
+  const match = useRouteMatch();
   return (
     <Style.AccomodationBlock>
       <Container fluid styles={{gutterWidth: 0}}>
         <Row noGutters>
-
-        <Col xs={12} md={3}>
-          <Style.ThumbnailWrapper>
-            <Thumbnail images={images} onClick={onClick} />
-          </Style.ThumbnailWrapper>
+          <Col xs={12} md={5}>
+            <Link to={`${match.url}/${id}`} data-testid="link-thumbnail">
+              <Style.ThumbnailWrapper>
+                <Thumbnail images={images} />
+              </Style.ThumbnailWrapper>
+            </Link>
           </Col>
-          <Col xs={12} md={9}>
+          <Col xs={12} md={7}>
           <Style.Content>
             <Style.Top>
-              <Style.Title data-testid="title">
-                {title}
-              </Style.Title>
+              <Link style={{textDecoration: 'none'}} to={`${match.url}/${id}`} data-testid="link-title">
+                <Style.Title data-testid="title">
+                  {title}
+                </Style.Title>
+              </Link>
               <Style.SubTitle>
                 <Style.Type data-testid="type">
                   {`${roomType} ${propertyType}`}
@@ -65,7 +70,7 @@ const AccomodationBlockComponent: FC<Props> = ({
                   {billsIncluded ? 'including bills' : 'not including bills'}
                 </Style.Bills>
               </Style.Price>
-              <Button label="View" onClick={onClick} primary data-testid="button"/>
+              <Button label="View" primary url={`${match.url}/${id}`}/>
             </Style.Bottom>
           </Style.Content>
           </Col>
