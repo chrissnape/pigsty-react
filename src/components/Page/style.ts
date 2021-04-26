@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { primaryColour } from '../../utils/styles';
+import { breakpoints } from '../../utils/styles';
 
 export const Page = styled.div`
-  background-color: ${primaryColour}
-`;
-
-export const ChildrenWrapper = styled.div`
-  background-color: #fff;
+  padding: 25px 0;
+  @media (max-width: ${breakpoints.sm}px) {
+    padding: 75px 0 15px;
+  };
 `;
 

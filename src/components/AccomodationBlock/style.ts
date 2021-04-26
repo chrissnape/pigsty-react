@@ -24,7 +24,7 @@ export const Top = styled.div`
   flex: 1;
 `;
 
-export const Title = styled.a`
+export const Title = styled.div`
   color: ${secondaryColour};
   cursor: pointer;
   font-size: 1.4em;
@@ -32,10 +32,11 @@ export const Title = styled.a`
   &: hover {
     text-decoration: underline;
   }
+  margin-bottom: 10px;
 `;
 
 export const SubTitle = styled.div`
-  margin: 10px 0px;
+  margin-bottom: 10px;
 `;
 
 export const Type = styled.span`

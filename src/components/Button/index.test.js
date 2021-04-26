@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import 'jest-styled-components';
 import Button from './index';
 import {
   fontColour,
-  greyLight,
   primaryColour,
   secondaryColour,
 } from '../../utils/styles';
@@ -27,7 +27,7 @@ test('runs onClick when button pressed', () => {
 
 test('button has default style', () => {
   const { container: { firstChild } } = render(<Button {...props} />);
-  expect(firstChild).toHaveStyleRule('background-color', greyLight);
+  expect(firstChild).toHaveStyleRule('background-color', '#f9f9f9');
   expect(firstChild).toHaveStyleRule('color', fontColour);
 });
 
@@ -41,4 +41,16 @@ test('button has secondary style when secondary is true', () => {
   const { container: { firstChild } } = render(<Button {...props} secondary/>);
   expect(firstChild).toHaveStyleRule('background-color', secondaryColour);
   expect(firstChild).toHaveStyleRule('color', '#fff');
+});
+
+test('renders placeholder when no images', () => {
+  const url = 'foo';
+  render(
+    <BrowserRouter>
+      <Route>
+        <Button {...props} url={url}/>
+      </Route>
+    </BrowserRouter>
+  );
+  expect(screen.getByTestId('link').href).toEqual(`http://localhost/${url}`);
 });

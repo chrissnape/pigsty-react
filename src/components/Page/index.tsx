@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { Container, Row, Col } from 'react-grid';
-import { ChildrenWrapper, Page } from './style';
+import { Page } from './style';
 
 type Props = {
   children: JSX.Element,
@@ -8,15 +7,7 @@ type Props = {
 
 const PageComponent: FC<Props> = ({children}): JSX.Element => (
   <Page>
-    <Container>
-      <Row>
-        <Col>
-          <ChildrenWrapper>
-            {children}
-          </ChildrenWrapper>
-        </Col>
-      </Row>
-    </Container>
+    {children}
   </Page>
 );
 

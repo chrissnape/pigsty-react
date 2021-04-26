@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Thumbnail from './index';
 
 const props = {
@@ -11,7 +11,6 @@ const props = {
       url:'https://ichef.bbci.co.uk/news/976/cpsprodpb/B4BA/production/_118166264_microsoftteams-image.png',
     },
   ],
-  onClick: jest.fn(),
 };
 
 test('renders image', () => {
@@ -27,10 +26,4 @@ test('renders number', () => {
 test('renders placeholder when no images', () => {
   render(<Thumbnail {...props} images={[]} />);
   expect(screen.getByTestId('placeholder')).toBeInTheDocument();
-});
-
-test('runs onClick when thumbnail pressed', () => {
-  render(<Thumbnail {...props} />);
-  fireEvent.click(screen.getByTestId('thumbnail'));
-  expect(props.onClick).toHaveBeenCalled();
 });

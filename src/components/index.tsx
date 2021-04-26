@@ -1,6 +1,10 @@
 export { default as AccomodationBlock } from './AccomodationBlock';
 export { default as Button } from './Button';
+export { default as Header } from './Header';
 export { default as Input } from './Input';
+export { default as NavigationDesktop } from './NavigationDesktop';
+export { default as NavigationMobile } from './NavigationMobile';
+export { default as NavigationListItem } from './NavigationListItem';
 export { default as Page } from './Page';
 export { default as SearchBox } from './SearchBox';
 export { default as Thumbnail } from './Thumbnail';
