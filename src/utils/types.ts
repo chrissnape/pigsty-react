@@ -10,7 +10,7 @@ export type Accomodation = {
   },
   amenities: Array<Amenity>,
   availability: {
-    dateString: string,
+    dateTimestamp: number,
     maximumTerm: string,
     minimumTerm: string,
   },
@@ -22,8 +22,8 @@ export type Accomodation = {
   images: Array<Image>,
   title: string,
   price: Price,
-  propertyType: PropertyType,
-  roomType: RoomType,
+  propertyType: string,
+  roomType: string,
 }
 
 export type Amenity = {
@@ -34,6 +34,11 @@ export type Amenity = {
 export type Image = {
   id: string,
   url: string,
+}
+
+export type PaymentType = {
+  id: string,
+  name: PerCalendarMonth | PerWeek,
 }
 
 export type PropertyType = {
@@ -52,5 +57,13 @@ export type PerWeek = 'pw';
 export type Price = {
   amount: number,
   billsIncluded: boolean,
-  time: PerCalendarMonth | PerWeek,
+  paymentType: PerCalendarMonth | PerWeek,
+}
+
+export type Query = {
+  city: string | null,
+  maxPrice: number,
+  minPrice: number,
+  paymentType: string | null,
+  roomType: string | null,
 }

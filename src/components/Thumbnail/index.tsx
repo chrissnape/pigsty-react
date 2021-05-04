@@ -20,7 +20,10 @@ const ThumbnailComponent: FC<Props> = ({images}): JSX.Element => (
         </Overlay>
       </Fragment>
     ) : (
-      <FaImages data-testid="placeholder"/>
+      <FaImages
+        style={{color: '#999', fontSize: '3em'}}
+        data-testid="placeholder"
+      />
     )}
   </Thumbnail>
 );
