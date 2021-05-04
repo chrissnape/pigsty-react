@@ -4,7 +4,7 @@ import AccomodationBlock from './index';
 
 const props = {
   id: '12345',
-  availabileDateString: '09/04/2020',
+  availabileDateTimestamp: 1586430000,
   city: 'Manchester',
   country: 'UK',
   images: [{ id: '67890', url:'https://ichef.bbci.co.uk/news/320/cpsprodpb/0FCC/production/_118144040_mediaitem118144038.jpg' }],
@@ -62,8 +62,8 @@ test('renders availability date for present/past', () => {
 
 test('renders price', () => {
   render(<AccomodationBlockJSX />);
-  const { amount, time } = props.price;
-  expect(screen.getByTestId('price').textContent).toEqual(`£${amount}${time}`);
+  const { amount, paymentType } = props.price;
+  expect(screen.getByTestId('price').textContent).toEqual(`£${amount}${paymentType}`);
   expect(screen.getByTestId('bills').textContent).toEqual('not including bills');
 });
 

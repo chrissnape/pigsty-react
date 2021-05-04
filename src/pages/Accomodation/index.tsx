@@ -1,16 +1,16 @@
 import { FC } from 'react';
-import {
-  useParams,
-} from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { Accomodation } from '../../utils/types';
 
 type Props = {
+  accomodation: Accomodation | any,
 }
 
-const ResultsScreen: FC<Props> = ({  }): JSX.Element => {
+const AccomodationScreen: FC<Props> = ({ accomodation }): JSX.Element => {
   const { accomodationId } = useParams<{ accomodationId: string }>();
   return (
     <div>{accomodationId}</div>
   );
 }
 
-export default ResultsScreen;
+export default AccomodationScreen;

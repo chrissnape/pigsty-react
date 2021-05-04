@@ -14,7 +14,7 @@ export const greyLight: string = '#ccc';
 export const greyMedium: string = '#666';
 export const greyDark: string = '#555';
 
-export const fontColour: string = "#333";
+export const fontColour: string = '#333';
 export const fontSize: string = '16px';
 
 export const borderColour: string = '#ccc';
@@ -22,3 +22,8 @@ export const border: string = `1px solid ${borderColour}`;
 export const borderRadius: string = '5px';
 
 export const breakpoints = { xs: 0, sm: 576, md: 768, lg: 992, xl: 1200 };
+
+export const red = '#FF4646';
+
+export const error = red;
+

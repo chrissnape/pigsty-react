@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-export const Results = styled.div`
-`;
-
 export const ResultsLabel = styled.span`
   font-weight: bold;
 `;

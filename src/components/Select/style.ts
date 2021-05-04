@@ -11,14 +11,17 @@ type Props = {
   isError: boolean,
 }
 
-export const Input = styled.input`
+export const Option = styled.option``;
+
+export const Select = styled.select`
   border: ${border};
   border-radius: ${borderRadius};
   color: ${fontColour};
   font-size: ${fontSize};
   padding: 5px;
-  width: calc(100% - 12px);
+  width: 100%;
   ${(props: Props) => (props.isError) && css`
     border-color: ${error};
+    color: ${error};
   `}
 `;

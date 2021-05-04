@@ -4,9 +4,11 @@ import {
 } from '../../utils/styles';
 
 export const Thumbnail = styled.div`
+  align-items: center;
   background-color: ${greyLight};
-  cursor: pointer;
+  display: flex;
   height: 100%;
+  justify-content: center;
   overflow: hidden;
   position: relative;
   width: 100%;
