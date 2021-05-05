@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import { error, fontColour, fontSize } from '../../utils/styles';
 
-type Props = {
-  isError: boolean,
-}
-
 export const ErrorWrapper = styled.div`
   margin-top: 10px;
 `;
@@ -18,7 +14,7 @@ export const Label = styled.div`
   font-size: ${fontSize};
   font-weight: bold;
   margin-bottom 5px;
-  ${(props: Props) => (props.isError) && css`
+  ${(props: { isError: boolean }) => (props.isError) && css`
     color: ${error};
   `}
 `;

@@ -62,8 +62,8 @@ export type Price = {
 
 export type Query = {
   city: string | null,
-  maxPrice: number,
-  minPrice: number,
+  maxPrice: number | null,
+  minPrice: number | null,
   paymentType: string | null,
   roomType: string | null,
 }

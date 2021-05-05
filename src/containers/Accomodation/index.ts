@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { getAccomodationSearchResults as getAccomodationSearchResultsAction } from '../../actions';
 import { Accomodation } from '../../pages';
 import { AppState } from '../../store';
-import { getAccomodationSearchResults as getAccomodationSearchResultsAction } from '../../actions';
+import { Query } from '../../utils/types';
 
 const mapStateToProps = (state: AppState) => {
   const { accomodation } = state;
@@ -10,7 +11,7 @@ const mapStateToProps = (state: AppState) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getAccomodationSearchResults: (query: Object) => getAccomodationSearchResultsAction(dispatch, query),
+  getAccomodationSearchResults: (query: Query) => getAccomodationSearchResultsAction(dispatch, query),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Accomodation);

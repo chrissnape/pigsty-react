@@ -26,11 +26,10 @@ const AccomodationScreen: FC<Props> = ({
   const [city, setCity] = useState<string>('');
   const [max, setMax] = useState<string>('');
   const [min, setMin] = useState<string>('');
-  const [roomType, setRoomType] = useState<string>('0');
+  const [roomType, setRoomType] = useState<string>('1');
   const [paymentType, setPaymentType] = useState<string | null>(null);
   const [errorCity, setErrorCity] = useState<boolean>(false);
   const [errorMinMax, setErrorMinMax] = useState<boolean>(false);
-  const [errorRoomType, setErrorRoomType] = useState<boolean>(false);
   const [errorPaymentType, setErrorPaymentType] = useState<boolean>(false);
   
   const history = useHistory();
@@ -75,19 +74,9 @@ const AccomodationScreen: FC<Props> = ({
     }
   }
 
-  const onChangeRoomType: Function = (id: string): void => {
-    if (id === '0') {
-      setErrorRoomType(true);
-    } else {
-      setErrorRoomType(false);
-    }
-    setRoomType(id);
-  }
-
   const roomTypesOptions: Array<OptionType> = [
-    {id: '0', label: 'Please select an option'},
-    ...roomTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name })),
     {id: '1', label: 'Any'},
+    ...roomTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name })),
   ];
   const roomTypeOption: OptionType | undefined = roomTypesOptions.find((option: OptionType) => option.id === roomType);
   const roomTypeId: string = roomTypeOption ? roomTypeOption.id : roomTypesOptions[0].id;
@@ -103,16 +92,18 @@ const AccomodationScreen: FC<Props> = ({
     const minMaxValid: boolean = (
       max.length > 0 && min.length > 0 && parsedMax >= 1 && parsedMin >= 0 && parsedMax >= parsedMin
     );
-    const roomTypeValid: boolean = roomType !== '0';
     const paymentTypeValid: boolean = paymentType !== null;
     if (!cityValid) setErrorCity(true);
     if (!minMaxValid) setErrorMinMax(true);
-    if (!roomTypeValid) setErrorRoomType(true);
     if (!paymentTypeValid) setErrorPaymentType(true);
-    if (cityValid && minMaxValid && roomTypeValid && paymentTypeValid) {
-      let query: Object = { city, paymentType, maxPrice: max, minPrice: min };
-      if (roomType !== '1') query = { ...query, roomType };
-      getAccomodationSearchResults(query);
+    if (cityValid && minMaxValid && paymentTypeValid) {
+      getAccomodationSearchResults({
+        city,
+        maxPrice: parsedMax,
+        minPrice: parsedMin,
+        paymentType,
+        roomType: (roomType !== '1') ? roomType : null,
+      });
       history.push('/results');
     }
   }
@@ -135,22 +126,20 @@ const AccomodationScreen: FC<Props> = ({
             onChange={onChangeCity}
             value={city}
           />
+          <FormSelect
+            label="Room Type"
+            onChange={setRoomType}
+            options={roomTypesOptions}
+            value={roomTypeId}
+          />
           <FormMinMax
-            errorLabel="Please set valid values"
+            errorLabel="Please set a valid price range"
             isError={errorMinMax}
-            label="Price"
+            label="Price range"
             onChangeMax={(val: string) => onChangeMinMax(val, false)}
             onChangeMin={(val: string) => onChangeMinMax(val, true)}
             valueMax={max}
             valueMin={min}
-          />
-          <FormSelect
-            errorLabel="Please select a room type"
-            isError={errorRoomType}
-            label="Room Type"
-            onChange={(id: string) => onChangeRoomType(id)}
-            options={roomTypesOptions}
-            value={roomTypeId}
           />
           <FormRadios
             errorLabel="Please select a payment type"

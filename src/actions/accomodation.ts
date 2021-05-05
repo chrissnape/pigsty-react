@@ -3,10 +3,13 @@ import { Accomodation, Query } from '../utils/types';
 
 const url = '/accomodation';
 
-function objToQueryString(query: Object) {
+function objToQueryString(query: Query) {
   let queryString: string = '';
   for (let i = 0; i < Object.keys(query).length; i += 1) {
-    queryString += `${encodeURIComponent(Object.keys(query)[i])}=${encodeURIComponent(Object.values(query)[i])}&`;
+    const queryValue = Object.values(query)[i];
+    if (queryValue !== null) {
+      queryString += `${encodeURIComponent(Object.keys(query)[i])}=${encodeURIComponent(queryValue)}&`;
+    }
   }
   return `?${queryString}`;
 }

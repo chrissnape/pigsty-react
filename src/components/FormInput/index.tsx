@@ -1,38 +1,69 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import { Col, Row } from 'react-grid';
 import { Error, Input } from '../';
 import { ErrorWrapper, FormInput, Label } from './style';
 
 type Props = {
-  isError: boolean,
+  errorLabel?: string,
+  isColumn?: boolean,
+  isError?: boolean,
   label: string,
-  errorLabel: string,
   onChange: Function,
+  placeholder?: string,
   value: string,
 }
 
 const FormInputComponent: FC<Props> = ({
-  isError, label, errorLabel, onChange, value,
-}): JSX.Element => (
-  <FormInput>
-    <Row>
-      <Col sm="2">
-        <Label isError={isError} data-testid="label">
-          {`${label}:`}
-        </Label>
-      </Col>
-      <Col sm="10">
-        <Input onChange={onChange} isError={isError} value={value} />
-      </Col>
-    </Row>
-    <ErrorWrapper>
-      <Row>
-        <Col offset={{ sm: '2' }}>
-          <Error label={errorLabel} isError={isError}/>
-        </Col>
-      </Row>
-    </ErrorWrapper>
-  </FormInput>
-);
+  errorLabel, isColumn = false, isError = false, label, onChange, placeholder, value,
+}): JSX.Element => {
+  const labelJSX: JSX.Element = (
+    <Label isError={isError} data-testid="label">
+      {`${label}:`}
+    </Label>
+  );
+  const inputJSX: JSX.Element = (
+    <Input
+      onChange={onChange}
+      isError={isError}
+      placeholder={placeholder}
+      value={value}
+    />
+  );
+  return (
+    <FormInput>
+      {isColumn ? (
+        <Fragment>
+          {labelJSX}
+          {inputJSX}
+          {errorLabel && (
+            <ErrorWrapper>
+              <Error label={errorLabel} isError={isError}/>
+            </ErrorWrapper>
+          )}
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Row>
+            <Col sm="2">
+              {labelJSX}
+            </Col>
+            <Col sm="10">
+              {inputJSX}
+            </Col>
+          </Row>
+          {(errorLabel && isError) && (
+            <ErrorWrapper>
+              <Row>
+                <Col offset={{ sm: '2' }}>
+                  <Error label={errorLabel} isError={isError}/>
+                </Col>
+              </Row>
+            </ErrorWrapper>
+          )}
+        </Fragment>
+      )}
+    </FormInput>
+  );
+}
 
 export default FormInputComponent;

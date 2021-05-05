@@ -1,7 +1,7 @@
-import { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect } from 'react';
 import { Container, Row, Col } from 'react-grid';
 import { AccomodationBlock, SearchBox } from '../../components';
-import { Accomodation, Query } from '../../utils/types';
+import { Accomodation, PaymentType, Query, RoomType } from '../../utils/types';
 import { AccomodationBlockWrapper, ResultsLabel, SearchBoxWrapper } from './style';
 
 type Props = {
@@ -11,7 +11,11 @@ type Props = {
   accomodationSearchResultsGetFailure: boolean,
   error: string | null,
   getAccomodationSearchResults: Function,
+  getAllPaymentTypes: Function,
+  getAllRoomTypes: Function,
+  paymentTypes: Array<PaymentType>,
   query: Query,
+  roomTypes: Array<RoomType>,
 }
 
 const ResultsScreen: FC<Props> = ({
@@ -21,14 +25,19 @@ const ResultsScreen: FC<Props> = ({
   accomodationSearchResultsGetFailure,
   error,
   getAccomodationSearchResults,
+  getAllPaymentTypes,
+  getAllRoomTypes,
+  paymentTypes,
   query,
+  roomTypes,
 }): JSX.Element => {
-  const [searchValue, setSearchValue] = useState<string>('');
   useEffect(() => {
-    if (query.city) {
-      setSearchValue(query.city);
-    }
-  }, [query]);
+    getAccomodationSearchResults({});
+    getAllPaymentTypes();
+    getAllRoomTypes();
+  }, [getAccomodationSearchResults, getAllPaymentTypes, getAllRoomTypes]);
+
+  
 
   const getResults: Function = (): JSX.Element => {
     if (accomodationSearchResultsGetSuccess) {
@@ -77,14 +86,10 @@ const ResultsScreen: FC<Props> = ({
         <Col xs={12} lg={3}>
           <SearchBoxWrapper>
             <SearchBox
-              onChange={(value: string) => setSearchValue(value)}
-              onClick={() => {
-                if (searchValue.length > 0) {
-                  const city = searchValue.charAt(0).toUpperCase() + searchValue.slice(1).toLowerCase();
-                  getAccomodationSearchResults({ city });
-                }
-              }}
-              searchValue={searchValue}
+              onSubmit={getAccomodationSearchResults}
+              paymentTypes={paymentTypes}
+              query={query}
+              roomTypes={roomTypes}
             />
           </SearchBoxWrapper>
         </Col>
