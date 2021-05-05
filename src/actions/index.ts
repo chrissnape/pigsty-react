@@ -1,21 +1,23 @@
 export {
   ACCOMODATION_INFO_GET,
+  ACCOMODATION_SEARCH_QUERY_SET,
   ACCOMODATION_SEARCH_RESULTS_GET_REQUEST,
   ACCOMODATION_SEARCH_RESULTS_GET_SUCCESS,
   ACCOMODATION_SEARCH_RESULTS_GET_FAILURE,
-  getAccomodationSearchResults
+  getAccomodationSearchResults,
+  setAccomodationSearchQuery,
 } from './accomodation';
 
 export {
   ROOM_TYPES_GET_REQUEST,
   ROOM_TYPES_GET_SUCCESS,
   ROOM_TYPES_GET_FAILURE,
-  getAllRoomTypes
+  getAllRoomTypes,
 } from './roomTypes';
 
 export {
   PAYMENT_TYPES_GET_REQUEST,
   PAYMENT_TYPES_GET_SUCCESS,
   PAYMENT_TYPES_GET_FAILURE,
-  getAllPaymentTypes
+  getAllPaymentTypes,
 } from './paymentTypes';

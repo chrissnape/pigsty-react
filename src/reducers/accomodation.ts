@@ -2,6 +2,7 @@ import { AnyAction, Reducer } from 'redux';
 import { Accomodation, Query } from '../utils/types';
 import {
   ACCOMODATION_INFO_GET,
+  ACCOMODATION_SEARCH_QUERY_SET,
   ACCOMODATION_SEARCH_RESULTS_GET_REQUEST,
   ACCOMODATION_SEARCH_RESULTS_GET_SUCCESS,
   ACCOMODATION_SEARCH_RESULTS_GET_FAILURE,
@@ -41,13 +42,18 @@ const accomodationReducer: Reducer<State, AnyAction> = (state: State = initialSt
         accomodation: state.accomodationSearchResults.find((a: Accomodation) => a.id === action.id) || null,
       }
 
+    case ACCOMODATION_SEARCH_QUERY_SET:
+      return {
+        ...state,
+        query: action.query,
+      }
+
     case ACCOMODATION_SEARCH_RESULTS_GET_REQUEST:
       return {
         ...state,
         accomodationSearchResultsGetRequest: true,
         accomodationSearchResultsGetSuccess: false,
         accomodationSearchResultsGetFailure: false,
-        query: action.query,
       }
     
     case ACCOMODATION_SEARCH_RESULTS_GET_SUCCESS:

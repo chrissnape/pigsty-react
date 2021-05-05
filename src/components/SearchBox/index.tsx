@@ -1,4 +1,4 @@
-import { FC, Fragment, MouseEventHandler, useState, } from 'react';
+import { FC, Fragment, MouseEventHandler, useEffect, useState } from 'react';
 import {
   Button, FormInput, FormMinMax, FormRadios, FormSelect, Panel,
 } from '../';
@@ -21,6 +21,14 @@ const SearchBoxComponent: FC<Props> = ({
   const [roomType, setRoomType] = useState<string>('1');
   const [paymentType, setPaymentType] = useState<string | null>(null);
   const [errorMinMax, setErrorMinMax] = useState<boolean>(false);
+
+  useEffect(() => {
+    setCity(query.city || '');
+    setMax(query.maxPrice ? `${query.maxPrice}` : '');
+    setMin(query.minPrice ? `${query.minPrice}` : '');
+    setRoomType(query.roomType || '1');
+    setPaymentType(query.paymentType);
+  }, [query]);
 
   const parsedMax: number = max.length ? parseInt(max, 10) : 0;
   const parsedMin: number = min.length ? parseInt(min, 10) : 0;

@@ -8,11 +8,11 @@ import { PaymentType, RoomType } from '../../utils/types';
 import { ButtonWrapper, Heading, PanelWrapper } from './style';
 
 type Props = {
-  getAccomodationSearchResults: Function,
   getAllPaymentTypes: Function,
   getAllRoomTypes: Function,
   paymentTypes: Array<PaymentType>,
   roomTypes: Array<RoomType>,
+  setAccomodationSearchQuery: Function,
 }
 
 type OptionType = {
@@ -21,7 +21,7 @@ type OptionType = {
 }
 
 const AccomodationScreen: FC<Props> = ({
-  getAccomodationSearchResults, getAllPaymentTypes, getAllRoomTypes, paymentTypes, roomTypes,
+  getAllPaymentTypes, getAllRoomTypes, paymentTypes, roomTypes, setAccomodationSearchQuery,
 }): JSX.Element => {
   const [city, setCity] = useState<string>('');
   const [max, setMax] = useState<string>('');
@@ -97,7 +97,7 @@ const AccomodationScreen: FC<Props> = ({
     if (!minMaxValid) setErrorMinMax(true);
     if (!paymentTypeValid) setErrorPaymentType(true);
     if (cityValid && minMaxValid && paymentTypeValid) {
-      getAccomodationSearchResults({
+      setAccomodationSearchQuery({
         city,
         maxPrice: parsedMax,
         minPrice: parsedMin,
