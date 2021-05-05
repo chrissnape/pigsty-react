@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Search } from '../../pages';
-import { AppState } from '../../store';
 import {
   getAccomodationSearchResults as getAccomodationSearchResultsAction,
   getAllPaymentTypes as getAllPaymentTypesAction,
   getAllRoomTypes as getAllRoomTypesAction,
 } from '../../actions';
+import { Search } from '../../pages';
+import { AppState } from '../../store';
+import { Query } from '../../utils/types';
+
 
 const mapStateToProps = (state: AppState) => {
   const { paymentTypes, roomTypes } = state;
@@ -14,7 +16,7 @@ const mapStateToProps = (state: AppState) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getAccomodationSearchResults: (query: Object) => getAccomodationSearchResultsAction(dispatch, query),
+  getAccomodationSearchResults: (query: Query) => getAccomodationSearchResultsAction(dispatch, query),
   getAllPaymentTypes: () => getAllPaymentTypesAction(dispatch),
   getAllRoomTypes: () => getAllRoomTypesAction(dispatch),
 });
