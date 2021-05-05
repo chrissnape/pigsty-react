@@ -164,7 +164,7 @@ const AccomodationScreen: FC<Props> = ({
           <PanelWrapper>
             <Panel>
               <Fragment>
-                <div>Help topics.</div>
+                <div>Need help?</div>
                 <ul>
                   <li>
                     Foo

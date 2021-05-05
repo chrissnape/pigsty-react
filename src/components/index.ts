@@ -1,6 +1,7 @@
 export { default as AccomodationBlock } from './AccomodationBlock';
 export { default as Button } from './Button';
 export { default as Error } from './Error';
+export { default as Footer } from './Footer';
 export { default as FormInput } from './FormInput';
 export { default as FormMinMax } from './FormMinMax';
 export { default as FormRadios } from './FormRadios';

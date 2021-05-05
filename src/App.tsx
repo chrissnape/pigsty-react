@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Header, Page } from './components';
+import { Footer, Header, Page } from './components';
 import { Accomodation, Results, Search } from './containers';
 
 const App = () =>  {
@@ -21,7 +21,8 @@ const App = () =>  {
             </Route>
           </Switch>
         </Page>
-        </Fragment>
+        <Footer />
+      </Fragment>
     </BrowserRouter>
   );
 }
