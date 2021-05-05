@@ -4,6 +4,7 @@ import {
   getAccomodationSearchResults as getAccomodationSearchResultsAction,
   getAllPaymentTypes as getAllPaymentTypesAction,
   getAllRoomTypes as getAllRoomTypesAction,
+  setAccomodationSearchQuery as setAccomodationSearchQueryAction,
 } from '../../actions';
 import { Results } from '../../pages';
 import { AppState } from '../../store';
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getAccomodationSearchResults: (query: Query) => getAccomodationSearchResultsAction(dispatch, query),
   getAllPaymentTypes: () => getAllPaymentTypesAction(dispatch),
   getAllRoomTypes: () => getAllRoomTypesAction(dispatch),
+  setAccomodationSearchQuery: (query: Query) => setAccomodationSearchQueryAction(dispatch, query),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

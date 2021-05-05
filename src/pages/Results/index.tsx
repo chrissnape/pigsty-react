@@ -32,13 +32,11 @@ const ResultsScreen: FC<Props> = ({
   roomTypes,
 }): JSX.Element => {
   useEffect(() => {
-    getAccomodationSearchResults({});
+    getAccomodationSearchResults(query);
     getAllPaymentTypes();
     getAllRoomTypes();
   }, [getAccomodationSearchResults, getAllPaymentTypes, getAllRoomTypes]);
-
   
-
   const getResults: Function = (): JSX.Element => {
     if (accomodationSearchResultsGetSuccess) {
       return (

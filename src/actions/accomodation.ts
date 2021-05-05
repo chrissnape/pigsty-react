@@ -3,7 +3,7 @@ import { Accomodation, Query } from '../utils/types';
 
 const url = '/accomodation';
 
-function objToQueryString(query: Query) {
+const objToQueryString: Function = (query: Query): string => {
   let queryString: string = '';
   for (let i = 0; i < Object.keys(query).length; i += 1) {
     const queryValue = Object.values(query)[i];
@@ -14,10 +14,15 @@ function objToQueryString(query: Query) {
   return `?${queryString}`;
 }
 
+export const ACCOMODATION_SEARCH_QUERY_SET: string = 'ACCOMODATION_SEARCH_QUERY_SET';
+export const setAccomodationSearchQuery: Function = (dispatch: Dispatch, query: Query): void => {
+  dispatch({ type: ACCOMODATION_SEARCH_QUERY_SET, query })
+}
+
 export const ACCOMODATION_SEARCH_RESULTS_GET_REQUEST: string = 'ACCOMODATION_SEARCH_RESULTS_GET_REQUEST';
 export const ACCOMODATION_SEARCH_RESULTS_GET_SUCCESS: string = 'ACCOMODATION_SEARCH_RESULTS_GET_SUCCESS';
 export const ACCOMODATION_SEARCH_RESULTS_GET_FAILURE: string = 'ACCOMODATION_SEARCH_RESULTS_GET_FAILURE';
-export const getAccomodationSearchResults: Function = ( dispatch: Dispatch, query: Query ): void => {
+export const getAccomodationSearchResults: Function = (dispatch: Dispatch, query: Query): void => {
   dispatch({ type: ACCOMODATION_SEARCH_RESULTS_GET_REQUEST, query });
   fetch(`${url}/getAllAccomodation${objToQueryString(query)}`)
     .then((res: Response) => res.json())
