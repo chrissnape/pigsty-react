@@ -44,17 +44,17 @@ const FormInputComponent: FC<Props> = ({
       ) : (
         <Fragment>
           <Row>
-            <Col sm="2">
+            <Col sm="3">
               {labelJSX}
             </Col>
-            <Col sm="10">
+            <Col sm="9">
               {inputJSX}
             </Col>
           </Row>
           {(errorLabel && isError) && (
             <ErrorWrapper>
               <Row>
-                <Col offset={{ sm: '2' }}>
+                <Col offset={{ sm: '3' }}>
                   <Error label={errorLabel} isError={isError}/>
                 </Col>
               </Row>

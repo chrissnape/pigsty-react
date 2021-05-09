@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Footer, Header, Page } from './components';
-import { Accomodation, Results, Search } from './containers';
+import { Accomodation, Register, Results, Search } from './containers';
 
 const App = () =>  {
   return (
@@ -10,6 +10,9 @@ const App = () =>  {
         <Header />
         <Page>
           <Switch>
+            <Route path="/register">
+              <Register />
+            </Route>
             <Route path="/results/:accomodationId">
               <Accomodation />
             </Route>

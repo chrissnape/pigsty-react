@@ -5,7 +5,7 @@ import {
   Button, FormInput, FormMinMax, FormRadios, FormSelect, Panel,
 } from '../../components';
 import { PaymentType, RoomType } from '../../utils/types';
-import { ButtonWrapper, Heading, PanelWrapper } from './style';
+import { ButtonWrapper, Heading } from './style';
 
 type Props = {
   getAllPaymentTypes: Function,
@@ -118,7 +118,7 @@ const AccomodationScreen: FC<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col md="8" order={{ xs: 'last', md: 'first' }}>
+        <Col md="8">
           <FormInput
             errorLabel="Please input a city name"
             isError={errorCity}
@@ -160,22 +160,20 @@ const AccomodationScreen: FC<Props> = ({
             </Col>
           </Row>
         </Col>
-        <Col md="4" order={{ xs: 'first', md: 'last' }}>
-          <PanelWrapper>
-            <Panel>
-              <Fragment>
-                <div>Need help?</div>
-                <ul>
-                  <li>
-                    Foo
-                  </li>
-                  <li>
-                    Bar
-                  </li>
-                </ul>
-              </Fragment>
-            </Panel>
-          </PanelWrapper>
+        <Col md="4">
+          <Panel>
+            <Fragment>
+              <div>Need help?</div>
+              <ul>
+                <li>
+                  Foo
+                </li>
+                <li>
+                  Bar
+                </li>
+              </ul>
+            </Fragment>
+          </Panel>
         </Col>
       </Row>
     </ Container>

@@ -27,8 +27,8 @@ const initialState: State = {
   error: null,
   query: {
     city: null,
-    maxPrice: 0,
-    minPrice: 999999999,
+    maxPrice: null,
+    minPrice: null,
     paymentType: null,
     roomType: null,
   },

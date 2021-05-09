@@ -3,5 +3,5 @@ import styled from 'styled-components';
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 15px;
 `;

@@ -67,3 +67,9 @@ export type Query = {
   paymentType: string | null,
   roomType: string | null,
 }
+
+export type LoginCredentials = {
+  emailAddress: string,
+  password: string,
+  confirmPassword?: string,
+}

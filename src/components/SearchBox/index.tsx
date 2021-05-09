@@ -25,7 +25,7 @@ const SearchBoxComponent: FC<Props> = ({
   useEffect(() => {
     setCity(query.city || '');
     setMax(query.maxPrice ? `${query.maxPrice}` : '');
-    setMin(query.minPrice ? `${query.minPrice}` : '');
+    setMin(query.minPrice || query.minPrice === 0 ? `${query.minPrice}` : '');
     setRoomType(query.roomType || '1');
     setPaymentType(query.paymentType);
   }, [query]);
@@ -68,61 +68,63 @@ const SearchBoxComponent: FC<Props> = ({
     });
   }
   return (
-    <Panel>
-      <Fragment>
-        <FormInput
-          isColumn
-          label="City"
-          onChange={(val: string) => setCity(val)}
-          placeholder="London"
-          value={city}
-        />
-        <FormSelect
-          isColumn
-          label="Room type"
-          onChange={setRoomType}
-          options={[
-            {id: '1', label: 'Any'},
-            ...roomTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name })),
-          ]}
-          value={roomType}
-        />
-        <FormMinMax
-          errorLabel="Please set a valid price range"
-          isColumn
-          isError={errorMinMax}
-          label="Price range"
-          onChangeMax={(val: string) => onChangeMinMax(val, false)}
-          onChangeMin={(val: string) => onChangeMinMax(val, true)}
-          valueMax={max}
-          valueMin={min}
-        />
-        <FormRadios
-          isColumn
-          label="Payment type"
-          onChange={setPaymentType}
-          options={paymentTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name }))}
-          value={paymentType}
-        />
-        <ButtonWrapper>
-          <Button
-            label="Clear filter"
-            onClick={() => {
-              setCity('');
-              setMax('');
-              setMin('');
-              setPaymentType(null);
-              setRoomType('1');
-            }}
+    <Fragment>
+      <Panel>
+        <Fragment>
+          <FormInput
+            isColumn
+            label="City"
+            onChange={(val: string) => setCity(val)}
+            placeholder="London"
+            value={city}
           />
-          <Button
-            label="Search"
-            onClick={submit}
-            primary
+          <FormSelect
+            isColumn
+            label="Room type"
+            onChange={setRoomType}
+            options={[
+              {id: '1', label: 'Any'},
+              ...roomTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name })),
+            ]}
+            value={roomType}
           />
-        </ButtonWrapper>
-      </Fragment>
-    </Panel>
+          <FormMinMax
+            errorLabel="Please set a valid price range"
+            isColumn
+            isError={errorMinMax}
+            label="Price range"
+            onChangeMax={(val: string) => onChangeMinMax(val, false)}
+            onChangeMin={(val: string) => onChangeMinMax(val, true)}
+            valueMax={max}
+            valueMin={min}
+          />
+          <FormRadios
+            isColumn
+            label="Payment type"
+            onChange={setPaymentType}
+            options={paymentTypes.map((rType: RoomType) => ({ id: rType.id, label: rType.name }))}
+            value={paymentType}
+          />
+        </Fragment>
+      </Panel>
+      <ButtonWrapper>
+        <Button
+          label="Clear filter"
+          onClick={() => {
+            setCity('');
+            setMax('');
+            setMin('');
+            setPaymentType(null);
+            setRoomType('1');
+          }}
+        />
+        <Button
+          label="Search"
+          onClick={submit}
+          primary
+        />
+      </ButtonWrapper>
+    </Fragment>
   );
 }
 

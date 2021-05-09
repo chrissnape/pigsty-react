@@ -9,6 +9,13 @@ export {
 } from './accomodation';
 
 export {
+  AUTHENTICATION_REGISTER_POST_REQUEST,
+  AUTHENTICATION_REGISTER_POST_SUCCESS,
+  AUTHENTICATION_REGISTER_POST_FAILURE,
+  firebaseRegister,
+} from './authentication';
+
+export {
   ROOM_TYPES_GET_REQUEST,
   ROOM_TYPES_GET_SUCCESS,
   ROOM_TYPES_GET_FAILURE,
